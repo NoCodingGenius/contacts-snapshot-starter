@@ -54,12 +54,11 @@ describe('Testing snapshot 446', () => {
     })
   })
   it('checks that the search is returning the correct data and rendering the correct page', (done) => {
-    testApi.get('/contacts/search', () => {
-      chai.expect(req).to.have.param('Dani')
-    })
+    testApi.get('/contacts/search')
     .type('form')
     .query({ q: 'Dani'})
     .end((err, res) => {
+      console.log("This is the response", res.text);
       expect(res).to.have.status(200);
       done()
     })

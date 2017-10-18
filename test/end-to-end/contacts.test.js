@@ -24,6 +24,7 @@ describe('Testing snapshot 446', () => {
     it('checks that the correct page is rendered', (done) => {
       testApi.get('/contacts/new')
       .end((err, res) => {
+        expect(res).to.have.status(200);
         expect(res.text).to.include("<h1>New Contact</h1>")
         done()
       })
@@ -56,10 +57,10 @@ describe('Testing snapshot 446', () => {
   it('checks that the search is returning the correct data and rendering the correct page', (done) => {
     testApi.get('/contacts/search')
     .type('form')
-    .query({ q: 'Dani'})
+    .query({ q: 'LaToya'})
     .end((err, res) => {
-      console.log("This is the response", res.text);
       expect(res).to.have.status(200);
+      expect(res.text).to.include('LaToya&nbsp;Williams');
       done()
     })
   })

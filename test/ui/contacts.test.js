@@ -22,4 +22,19 @@ test.describe('UI Test: Use a headless browser testing library', function () {
     });
     driver.quit();
   })
+  test.it('I should see a list of contacts on the page', function () {
+    this.timeout(10000);
+
+    var driver = new webdriver.Builder()
+    .withCapabilities(webdriver.Capabilities.chrome())
+    .build();
+
+    driver.get('http://localhost:3000/')
+
+    driver.executeScript('return document.getElementsByClassName("contact-link")')
+    .then((return_value) => {
+      expect(return_value[100].id_.state_).to.equal('fulfilled');
+    });
+    driver.quit();
+  })
 })

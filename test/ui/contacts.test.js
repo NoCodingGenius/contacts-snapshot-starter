@@ -15,34 +15,33 @@ test.describe('UI Test: Use a headless browser testing library', function () {
     return dbHelper.initDB()
   });
 
+  after('reset the test', () => {
+    driver.close();
+    driver.quit();
+  })
+
+  const driver = new webdriver.Builder()
+  .forBrowser('chrome')
+  .build();
+
   test.it('I should see a form which lets me create a new contact', function () {
     this.timeout(10000);
 
-    var driver = new webdriver.Builder()
-    .withCapabilities(webdriver.Capabilities.chrome())//.forBrowser('chrome')
-    .build();
-
     driver.get('http://localhost:3000/contacts/new')
-
-    driver.executeScript('return document.getElementById("new-contact-form").elements.length')
-    .then((return_value) => {
-      expect(return_value).to.equal(3);
-    });
-    driver.quit();
+    driver.findElement(By.className('new-contact-form'))
+    .then(element => element.isDisplayed())
+    .then(isFormDisplayed => {
+      expect(isFormDisplayed).to.equal(true);
+    })
   })
   test.it('I should see a list of contacts on the page', function () {
     this.timeout(10000);
 
-    var driver = new webdriver.Builder()
-    .withCapabilities(webdriver.Capabilities.chrome())
-    .build();
-
     driver.get('http://localhost:3000/')
-
-    driver.executeScript('return document.getElementsByClassName("contact-link")')
-    .then((return_value) => {
-      expect(return_value[7].id_.state_).to.equal('fulfilled');
-    });
-    driver.quit();
+    driver.findElement(By.className('contact-link'))
+    .then(element => element.isDisplayed())
+    .then(isContactDisplayed => {
+      expect(isContactDisplayed).to.equal(true);
+    })
   })
 })

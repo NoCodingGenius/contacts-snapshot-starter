@@ -9,34 +9,34 @@ const expect = require('chai').expect;
 
 describe('Testing Snapshot 446', () => {
 
-  describe('Intergration tsting: write test to test all the database functions', () => {
+  describe('Integration testing: write test to test all the database functions', () => {
 
     beforeEach('reset the DB', () => {
       return dbHelper.initDB()
     });
 
-    it('a test to test the create function', () => {
-      return contacts.create({ first_name: 'Fode', last_name: 'Diop' }).then((result) => {
+    it('test the create function', () => {
+      return contacts.create({ first_name: 'Fode', last_name: 'Diop' }).then(result => {
         expect(result).to.be.an('array');
       })
     })
-    it('a test to test the findAll function', () => {
-      return contacts.findAll().then((result) => {
+    it('test the findAll function', () => {
+      return contacts.findAll().then(result => {
         expect(result[0].first_name).to.equal('Jared');
       })
     })
-    it('a test to test the findById function', () => {
-      return contacts.findById('3').then((result) => {
+    it('test the findById function', () => {
+      return contacts.findById('3').then(result => {
         expect(result).to.deep.equal({ id: 3, first_name: 'NeEddra', last_name: 'James' });
       })
     })
-    it('a test to test the destroy function', () => {
-      return contacts.destroy('2').then((result) => {
+    it('test the destroy function', () => {
+      return contacts.destroy('2').then(result => {
         expect(result).to.deep.equal([]);
     })
   })
-  it('a test to test the search function', () => {
-    return contacts.search('alex').then((result) => {
+  it('test the search function', () => {
+    return contacts.search('alex').then(result => {
       expect(result).to.deep.equal([{ id: 6, first_name: 'Alex', last_name: 'Waite' }]);
   })
 })

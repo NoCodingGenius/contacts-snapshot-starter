@@ -19,7 +19,7 @@ describe('Testing snapshot 446', () => {
       return dbHelper.initDB()
     });
 
-    it('index page is rendered and all contacts are being received', (done) => {
+    it('index page is rendered and all contacts are being received', done => {
       testApi.get('/').end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.text).to.include("<h1>Contacts</h1>");
@@ -27,7 +27,7 @@ describe('Testing snapshot 446', () => {
         done();
       });
     });
-    it('checks that the correct page is rendered', (done) => {
+    it('checks that the correct page is rendered', done => {
       testApi.get('/contacts/new')
       .end((err, res) => {
         expect(res).to.have.status(200);
@@ -35,17 +35,17 @@ describe('Testing snapshot 446', () => {
         done()
       })
     })
-    it('saves contact data to the database', (done) => {
+    it('saves contact data to the database', done => {
       testApi.post('/contacts')
       .type('form')
-      .send({ first_name: 'Zubair', last_name: 'Ahmed' })
+      .send({ first_name: 'Justin', last_name: 'Haaheim' })
       .end((err, res) => {
         expect(res).to.have.status(200);
-        //expect(res).to.redirectTo('http://localhost:3000/contacts/29');
+        expect(res).to.redirectTo('http://localhost:3000/contacts/11');
         done();
      })
   })
-  it('makes sure the correct data is returned', (done) => {
+  it('makes sure the correct data is returned', done => {
     testApi.get('/contacts/6')
     .end((err, res) => {
       expect(res).to.have.status(200);
@@ -53,14 +53,14 @@ describe('Testing snapshot 446', () => {
       done()
     })
   })
-  it('makes sure the correct data is deleted', (done) => {
+  it('makes sure the correct data is deleted', done => {
     testApi.delete('/contacts/5')
     .end((err, res) => {
       expect(res).to.redirectTo('http://localhost:3000/');
       done()
     })
   })
-  it('checks that the search is returning the correct data and rendering the correct page', (done) => {
+  it('checks that the search is returning the correct data and rendering the correct page', done => {
     testApi.get('/contacts/search')
     .type('form')
     .query({ q: 'LaToya'})

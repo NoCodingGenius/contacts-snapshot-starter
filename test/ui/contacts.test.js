@@ -16,7 +16,8 @@ test.describe('UI Test: Use a headless browser testing library', function () {
 
     driver.get('http://localhost:3000/contacts/new')
 
-    driver.executeScript('return document.getElementById("new-contact-form").elements.length').then((return_value) => {
+    driver.executeScript('return document.getElementById("new-contact-form").elements.length')
+    .then((return_value) => {
       expect(return_value).to.equal(3);
     });
     driver.quit();

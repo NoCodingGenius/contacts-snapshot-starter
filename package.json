@@ -8,10 +8,9 @@
     "start:dev": "nodemon src/server.js",
     "db:reset": "dropdb contacts_development && createdb contacts_development && npm run load_schema",
     "load_schema": "psql -d contacts_development < src/models/db/schema/schema.sql",
-    "load_contacts": "psql -d contacts_development < test/seed/contacts.sql",
+    "load_contacts": "psql -d contacts_test < test/seed/contacts.sql",
     "test": "mocha test --recursive",
-    "testdb:make": "createdb contacts_test && psql -d contacts_test < src/models/db/schema/schema.sql",
-    "load_contacts": "psql -d contacts_test < test/seed/contacts.sql"
+    "testdb:make": "createdb contacts_test && psql -d contacts_test < src/models/db/schema/schema.sql"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +23,8 @@
     "express": "^4.15.2",
     "method-override": "^2.3.10",
     "mocha": "^4.0.1",
-    "pg-promise": "^6.2.1"
+    "pg-promise": "^6.2.1",
+    "selenium-webdriver": "^3.6.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

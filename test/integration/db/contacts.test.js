@@ -2,6 +2,7 @@ process.env.DATABASE_URL = 'postgres://localhost:5432/contacts_test';
 const app = require('../../../src/server.js');
 const contacts = require('../../../src/models/db/contacts.js');
 const db = require('../../../src/models/db/db.js');
+const dbHelper = require('../../helpers/db')
 
 const chai = require('chai');
 const expect = require('chai').expect;
@@ -9,6 +10,11 @@ const expect = require('chai').expect;
 describe('Testing Snapshot 446', () => {
 
   describe('Intergration tsting: write test to test all the database functions', () => {
+
+    beforeEach('reset the DB', () => {
+      return dbHelper.initDB()
+    });
+
     it('a test to test the create function', () => {
       return contacts.create({ first_name: 'Fode', last_name: 'Diop' }).then((result) => {
         expect(result).to.be.an('array');

@@ -6,5 +6,9 @@ VALUES
   ('NeEddra', 'James'),
   ('LaToya', 'Williams'),
   ('Dani', 'Gellis'),
-  ('Alex', 'Waite')
+  ('Alex', 'Waite'),
+  ('Zubair', 'Ahmed'),
+  ('Fode', 'Diop'),
+  ('Punit', 'Rathore'),
+  ('DeBray', 'Carpenter')
 ;

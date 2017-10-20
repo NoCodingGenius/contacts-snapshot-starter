@@ -1,6 +1,7 @@
 process.env.DATABASE_URL = 'postgres://localhost:5432/contacts_test';
 const app = require('../../src/server.js');
 const contacts = require('../../src/models/db/contacts.js');
+const dbHelper = require('../helpers/db')
 
 const chai = require('chai');
 const chaiHttp = require('chai-http');
@@ -13,6 +14,11 @@ const testApi = chai.request('http://localhost:3000');
 
 describe('Testing snapshot 446', () => {
   describe('end to end testing: test the http routes exposed in the server', () => {
+
+    beforeEach('reset the DB', () => {
+      return dbHelper.initDB()
+    });
+
     it('index page is rendered and all contacts are being received', (done) => {
       testApi.get('/').end((err, res) => {
         expect(res).to.have.status(200);

@@ -35,10 +35,10 @@ describe('Testing Snapshot 446', () => {
         expect(result).to.deep.equal([]);
     })
   })
-  it('test the search function', () => {
-    return contacts.search('alex').then(result => {
-      expect(result).to.deep.equal([{ id: 6, first_name: 'Alex', last_name: 'Waite' }]);
+    it('test the search function', () => {
+      return contacts.search('alex').then(result => {
+        expect(result).to.deep.equal([{ id: 6, first_name: 'Alex', last_name: 'Waite' }]);
+      })
+    })
   })
-})
-})
 })
